@@ -4,7 +4,11 @@
 
 # COMMAND ----------
 
-# TODO: list the volume
+
 VOLUME_PATH = "/Volumes/supply_chain_demo/default/raw"
 
-spark.sql(f"LIST '{VOLUME_PATH}'")
+spark.sql(f"LIST '{VOLUME_PATH}'").display()
+
+# COMMAND ----------
+
+spark.sql(f"LIST '{VOLUME_PATH}/data'").display()
