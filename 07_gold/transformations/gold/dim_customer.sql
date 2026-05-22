@@ -1,12 +1,13 @@
-CREATE OR REFRESH MATERIALIZED VIEW supply_chain_live.gold.dim_product
-COMMENT "Dim products deduplicated - gold layer" AS
+CREATE OR REFRESH MATERIALIZED VIEW supply_chain_live.gold.dim_customer
+COMMENT "Dim customer deduplicated - gold layer" AS
 SELECT
-  product_card_id AS product_id,
-  MAX_BY(product_name, order_date) AS product_name,
-  MAX_BY(product_price, order_date) AS product_price
+  customer_id,
+  MAX_BY(customer_fname, order_date) AS first_name,
+  MAX_BY(customer_lname, order_date) AS last_name,
+  MAX_BY(customer_country, order_date) AS country
 FROM
   supply_chain_live.silver.supply_chain_obt
 GROUP BY 
-    product_id
+    customer_id
 ORDER BY 
-    product_id;
+    customer_id;
